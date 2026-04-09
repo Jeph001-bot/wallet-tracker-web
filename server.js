@@ -2,10 +2,10 @@ const express = require("express");
 const axios = require("axios");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // 🔑 Replace with your API key
-const API_KEY = "https://go.getblock.asia/2aa6ae3527d84ac1a1fe9e1085cd15cf";
+const API_KEY = process.env.API_KEY;
 
 const url = `https://go.getblock.asia/2aa6ae3527d84ac1a1fe9e1085cd15cf`;
 
