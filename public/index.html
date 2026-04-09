@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wallet Tracker</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+
+  <h1>🚀 Wallet Tracker</h1>
+
+  <input id="wallet" placeholder="Enter wallet address" style="width:300px; padding:10px;">
+  <br><br>
+
+  <button onclick="track()">Track</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    async function track() {
+      const address = document.getElementById("wallet").value;
+
+      const res = await fetch("/balance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ address })
+      });
+
+      const data = await res.json();
+
+      if (data.balance !== undefined) {
+        document.getElementById("result").innerText =
+          "Balance: " + data.balance + " ETH";
+      } else {
+        document.getElementById("result").innerText =
+          "Error fetching balance";
+      }
+    }
+  </script>
+
+</body>
+</html>
